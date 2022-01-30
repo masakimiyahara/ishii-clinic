@@ -1,0 +1,518 @@
+// レイアウト幅
+$layout-width-inner: 1180px;
+
+// ブレークポイント
+$breakpoints: (
+  "ip": "screen and (max-width: 450px)",
+  "sp": "screen and (max-width: 767px)",
+  "tab": "screen and (max-width: #{$layout-width-inner - 1px})",
+  "pc": "screen and (min-width: #{$layout-width-inner})",
+);
+
+// メディアクエリー
+@mixin mq($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+/*===base=============================================================
+========================================================================*/
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  color: #444444;
+}
+
+.wrap {
+  @include mq("sp") {
+    overflow: hidden;
+  }
+}
+
+img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+small {
+  font-size: 14px;
+}
+
+iframe {
+  width: 100%;
+}
+
+.tel {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 15px;
+  @include mq("sp") {
+    display: block;
+    margin-top: 8px;
+  }
+  &-img {
+    width: 25px;
+    height: 25px;
+    margin-right: 6px;
+    @include mq("sp") {
+      margin-right: 0;
+    }
+  }
+  &-number {
+    color: #21a937;
+    font-weight: bold;
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+}
+
+.section-wrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+  @include mq("tab") {
+    padding: 0 15px;
+  }
+}
+
+.section-ttl {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  span {
+    display: inline-block;
+    margin-top: 35px;
+    background: linear-gradient(transparent 75%, #99e5a5 25%);
+  }
+}
+
+.background {
+  background-color: #f5fcf8;
+}
+
+/*===header=============================================================
+========================================================================*/
+
+.header {
+  height: 130px;
+  &-inner {
+    display: flex;
+    height: 130px;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 10px;
+    padding: 0 370px;
+    @include mq("tab") {
+      padding: 0 30px;
+    }
+    @include mq("sp") {
+      display: block;
+      padding-top: 10px;
+    }
+  }
+  &-logo {
+    width: 263px;
+    @include mq("sp") {
+      width: 150px;
+      margin: 0 auto;
+    }
+  }
+  .nav-wrapper {
+    margin-top: 8px;
+    text-align: center;
+  }
+}
+
+/*===fv=============================================================
+========================================================================*/
+.fv {
+  background-image: url(../img/fv@2x.png);
+  background-size: cover;
+  background-position: center;
+  height: 947px;
+  @include mq("tab") {
+    background-position: 80%;
+  }
+
+  @include mq("sp") {
+    height: 650px;
+    background-position: 73%;
+  }
+
+  &-copy {
+    padding-top: 133px;
+    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
+    @include mq("sp") {
+      padding-top: 300px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      background-color: #fff;
+      padding: 37px;
+      letter-spacing: 0.34em;
+      @include mq("sp") {
+        font-size: 14px;
+        padding: 20px;
+      }
+
+      span {
+        color: #21a937;
+      }
+    }
+    h1 + h1 {
+      margin-right: 80px;
+      margin-left: 211px;
+      @include mq("tab") {
+        margin: 0 20px;
+      }
+      @include mq("sp") {
+      }
+    }
+  }
+}
+
+/*===about=============================================================
+========================================================================*/
+.about {
+  display: flex;
+  margin-top: 162px;
+  &-inner {
+    display: flex;
+    @include mq("sp") {
+      flex-direction: column-reverse;
+    }
+  }
+  .content-box {
+    margin-right: 44px;
+    @include mq("sp") {
+      margin-right: 0;
+    }
+    .about-ttl {
+      text-align: left;
+      margin-bottom: 37px;
+      @include mq("sp") {
+        text-align: center;
+      }
+    }
+    .text {
+      font-size: 16px;
+      line-height: 2.4;
+      @include mq("sp") {
+        // text-align: center;
+        font-size: 14px;
+      }
+      br {
+        @include mq("sp") {
+          display: none;
+        }
+      }
+    }
+  }
+  &-img {
+    width: 60%;
+    @include mq("sp") {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+}
+
+/*===service=============================================================
+========================================================================*/
+.service {
+  margin-top: 82px;
+  padding-top: 78px;
+
+  &-ttl {
+    text-align: center;
+  }
+
+  .sub {
+    margin-top: 70px;
+    font-style: 16px;
+  }
+
+  .card-list {
+    display: flex;
+    margin-top: 33px;
+    @include mq("tab") {
+      display: block;
+    }
+    .card-item {
+      position: relative;
+      width: calc(33.3333% - 25px * 2 / 3);
+      background-color: #fff;
+      padding-top: 40px;
+      padding-bottom: 264px;
+      border: 2px solid #c9c9c9;
+      border-radius: 10px;
+      text-align: center;
+      @include mq("tab") {
+        width: 100%;
+        min-height: 350px;
+        text-align: left;
+        padding: 30px;
+      }
+      @include mq("sp") {
+        min-height: 500px;
+      }
+
+      h3 {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      p {
+        display: inline-block;
+        text-align-last: left;
+        margin-top: 45px;
+        line-height: 2rem;
+        br {
+          @include mq("sp") {
+            display: none;
+          }
+        }
+      }
+    }
+    li + li {
+      margin-left: 20px;
+      @include mq("tab") {
+        margin-left: 0px;
+        margin-top: 30px;
+      }
+    }
+    .card-img {
+      position: absolute;
+      margin: auto;
+      width: 60%;
+      top: 80%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      @include mq("tab") {
+        width: 30%;
+        top: 50%;
+        left: 75%;
+      }
+      @include mq("sp") {
+        width: 50%;
+        top: 70%;
+        left: 50%;
+      }
+      @include mq("ip") {
+        width: 50%;
+        top: 80%;
+        left: 50%;
+      }
+    }
+  }
+}
+
+/*===news=============================================================
+========================================================================*/
+.news {
+  margin-top: 82px;
+  padding-bottom: 112px;
+
+  &-inner {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0px 3px 6px #00000029;
+    margin-top: 60px;
+    padding-top: 50px;
+  }
+  &-list {
+    padding: 0 66px;
+  }
+  &-item {
+    display: flex;
+    padding: 20px 0px;
+    border-bottom: 2px solid #e7e7e7;
+    @include mq("tab") {
+      display: block;
+    }
+
+    dt {
+      display: flex;
+      .date {
+        color: #21a937;
+      }
+      .tag {
+        width: 80px;
+        background-color: #444444;
+        color: #fff;
+        font-size: 12px;
+        padding: 6px 16px;
+        text-align: center;
+        margin-left: 30px;
+      }
+    }
+    dd {
+      margin-left: 30px;
+      @include mq("tab") {
+        margin-left: 0px;
+        margin-top: 20px;
+      }
+    }
+  }
+  &-btn {
+    position: relative;
+    padding: 40px 66px 46px 0px;
+    text-align: right;
+
+    &:after {
+      content: "";
+      position: absolute;
+      border-style: solid;
+      border-width: 5px 0 5px 8px;
+      border-color: transparent transparent transparent #333;
+      position: absolute;
+      margin-top: 5px;
+      right: 4.5%;
+    }
+  }
+}
+/*===footer=============================================================
+========================================================================*/
+.footer {
+  padding: 196px 0 163px;
+  @include mq("sp") {
+    padding: 60px 0 40px;
+  }
+  &-inner {
+    display: flex;
+    justify-content: space-between;
+    @include mq("sp") {
+      display: block;
+      flex-direction: column-reverse;
+    }
+
+    .map {
+      width: 52%;
+      @include mq("tab") {
+        width: calc(48% - 38px);
+      }
+      @include mq("sp") {
+        display: none;
+      }
+    }
+  }
+  &-info {
+    width: calc(48% - 38px);
+    @include mq("tab") {
+      width: 52%;
+    }
+    @include mq("sp") {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  &-logo {
+    max-width: 263px;
+    margin-bottom: 25px;
+    @include mq("sp") {
+      margin: 0 auto;
+    }
+  }
+  &-tel {
+    justify-content: start;
+    margin-top: 25px;
+  }
+  .address {
+    @include mq("sp") {
+      margin-top: 20px;
+    }
+  }
+
+  .medical-list {
+    border-top: 2px solid #e7e7e7;
+    border-bottom: 2px solid #e7e7e7;
+    margin-top: 28px;
+    padding-top: 21px;
+    @include mq("sp") {
+      margin-bottom: 20px;
+    }
+
+    .box1 {
+      display: flex;
+      margin-bottom: 23px;
+      font-size: 14px;
+      @include mq("ip") {
+        display: block;
+      }
+
+      p {
+        width: 84px;
+        border-right: 2px solid #e7e7e7;
+        @include mq("ip") {
+          margin: 0 auto;
+          border-bottom: 2px solid #e7e7e7;
+          border-right: 0px;
+        }
+      }
+      .time {
+        display: flex;
+        padding-left: 28px;
+        margin-bottom: 13px;
+        @include mq("ip") {
+          display: block;
+          padding-left: 0px;
+          margin-top: 20px;
+        }
+
+        dt {
+          margin-right: 23px;
+          font-weight: 400;
+          @include mq("ip") {
+            margin-right: 0px;
+            margin-bottom: 15px;
+          }
+          span {
+            background: linear-gradient(transparent 75%, #99e5a5 25%);
+          }
+        }
+        dd {
+          br {
+            display: none;
+          }
+        }
+      }
+      .close {
+        margin-left: 28px;
+        @include mq("ip") {
+          margin-left: 0px;
+        }
+        dt {
+          font-weight: 400;
+          @include mq("ip") {
+            margin-top: 15px;
+          }
+        }
+      }
+    }
+  }
+  .res-map {
+    display: none;
+    @include mq("sp") {
+      display: block;
+    }
+  }
+  small {
+    margin-top: 21px;
+    display: block;
+    text-align: right;
+    font-size: 11px;
+    @include mq("sp") {
+      margin-top: 30px;
+      padding-top: 10px;
+      text-align: center;
+      border-top: 2px solid #e7e7e7;
+    }
+  }
+}
